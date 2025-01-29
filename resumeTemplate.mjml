@@ -1,0 +1,30 @@
+<mjml>
+  <mj-body>
+    <mj-section>
+      <mj-column>
+        <mj-text align="center" font-size="20px" font-weight="bold" color="#0044cc">
+          Your Resume is Ready!
+        </mj-text>
+        <mj-text font-size="16px" color="#555555">
+          Hello, <br/>
+          Congratulations! Your resume has been successfully generated. 
+          Please find your resume attached below.
+        </mj-text>
+        <mj-text font-size="16px" color="#555555">
+          You can also download your resume from the link below:
+        </mj-text>
+        <mj-button href="{{resumeLink}}" background-color="#0044cc" color="#ffffff">
+          Download Resume
+        </mj-button>
+        <mj-divider border-color="#0044cc" />
+        <mj-text font-size="14px" color="#777777">
+          If you have any questions or need further assistance, feel free to reply to this email.
+        </mj-text>
+        <mj-text font-size="14px" color="#777777">
+          Best regards,<br/>
+          Your Team
+        </mj-text>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>

@@ -1,0 +1,138 @@
+// this is resumedata.js
+const resumeData = {
+    // Document Settings
+    documentSettings: {
+        margin: 50,
+        sideBoxSettings: {
+            x: 30,
+            y: 30,
+            width: 200,
+            height: 730,
+            color: '#E1E1E1'
+        }
+    },
+
+    // Fonts and Colors
+    styling: {
+        primaryFont: 'Helvetica-Bold',
+        secondaryFont: 'Helvetica',
+        sectionHeadingFontSize: 16,
+        normalFontSize: 11.5
+    },
+
+    // Profile Image Settings
+    profileImage: {
+        path: 'C:\\Users\\HP\\OneDrive\\Desktop\\Interview essential\\Gayathri_photo.jpeg',
+        x: 70,
+        y: 60,
+        horizontalRadius: 55,
+        verticalRadius: 53,
+        borderThickness: 4,
+        width: 110,
+        height: 132.5
+    },
+
+    // Personal Information
+    personal: {
+        name: 'Gayathri',
+        profile: 'As a final-year engineering student, I am passionate about applying my problem-solving skills to develop innovative solutions that benefit society. My academic journey has provided me with a solid foundation in engineering principles, along with practical experience in various technologies.'
+    },
+
+    // Contact Information
+    contact: {
+        address: {
+            line1: 'Sri Geetha Priya Nilaya',
+            line2: 'Hiriadka-576113'
+        },
+        phone: '+91 8618260270',
+        email: 'gayathri333@gmail.com',
+        linkedin: 'www.linkedin.com/in/gayathri3213',
+        github: 'github.com/Gayathri3'
+    },
+
+    // Education Details
+    education: [
+        {
+            degree: 'Bachelor of Engineering',
+            institution: 'NMAM Institute of Technology',
+            period: '2021 - 2025',
+            score: 'CGPA: 8.61'
+        },
+        {
+            degree: 'Pre-University Course',
+            institution: 'Mahatma Gandhi Memorial College, Udupi',
+            period: '2019 - 2021',
+            score: 'Percentage: 88.67'
+        },
+        {
+            degree: 'SSLC (Secondary School Leaving Certificate)',
+            institution: 'G.P.U High School',
+            period: '2016 - 2019',
+            score: 'Percentage: 92.33'
+        }
+    ],
+
+    // Skills
+    skills: {
+        languages: ['C/C++', 'HTML/CSS/JavaScript', 'Python'],
+        technical: [
+            'Internet of Things',
+            'Data Structure and Algorithms',
+            'DBMS',
+            'Operating System',
+            'Computer Networks',
+            'Cyber Security'
+        ]
+    },
+
+    // Experience
+    experience: {
+        title: 'Project: Cyber Security Tools for Ethical Hacking',
+        duration: 'Duration: February 03, 2023 - March 15, 2023',
+        location: 'Location: MIT Manipal, Manipal',
+        supervisor: 'Supervisor: Dr. Krishna Prakash',
+        responsibilities: [
+            'Gained hands-on experience with cybersecurity tools and ethical hacking practices.',
+            'Worked on securing systems and identifying vulnerabilities under expert supervision.'
+        ]
+    },
+
+    // Technical Projects
+    projects: [
+        {
+            name: 'Social Media Project (Sociofly) using DBMS',
+            description: 'Developed a web-based application simulating a social media platform. Features post sharing, friend connections, and social interactions.'
+        },
+        {
+            name: 'Smart Speed Breaker using IoT',
+            description: 'Designed a system to enhance road safety at zebra crossings. Utilized ultrasonic sensors to detect vehicles or pedestrians.'
+        },
+        {
+            name: 'Shopnest: E-commerce Application',
+            description: 'Created a responsive e-commerce app for browsing, purchasing, and profile management using Android Studio, Java, XML, and Firebase.'
+        }
+    ],
+
+    // Certificates
+    certificates: [
+        'Successfully completed the Data Science course at Adverk.',
+        'Successfully completed Foundations of Cybersecurity course.',
+        'Successfully completed AWS Cloud Practitioner Essentials.'
+    ],
+
+    // Achievements
+    achievements: [
+        'Received the patent for IOT project "Smart Speed Breaker"'
+    ],
+
+    // Icons Paths
+    icons: {
+        location: 'D:/Exelon/resumePDF/emojis/loc.png',
+        phone: 'D:/Exelon/resumePDF/emojis/phone-call.png',
+        email: 'D:/Exelon/resumePDF/emojis/email.png',
+        linkedin: 'D:/Exelon/resumePDF/emojis/linkedin.png',
+        github: 'D:/Exelon/resumePDF/emojis/github.png'
+    }
+};
+
+module.exports = resumeData;
