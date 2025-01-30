@@ -1,4 +1,4 @@
-import express, { Request, Response } from 'express';
+import express from 'express';
 import bodyParser from 'body-parser';
 import path from 'path';
 import fs from 'fs';
@@ -6,7 +6,7 @@ import dotenv from 'dotenv';
 import { Resend } from 'resend';
 import mjml2html from 'mjml';
 import generateResume from './resumeGenerator';
-import resumeData from './resumeData';
+import readline from 'readline';
 
 dotenv.config();
 
@@ -28,22 +28,35 @@ const generateEmailHTML = (resumeLink: string): string => {
     return htmlOutput.html;
 };
 
-app.get('/resume', (req: Request, res: Response) => {
-    res.json(resumeData);
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
 });
 
-app.post('/generate-resume', async (req: Request, res: Response) => {
+rl.question('Enter the filename of the JSON file: ', async (filename) => {
     try {
+        const filePath = path.join(__dirname, '..', filename); // Adjust path to root directory
+        if (!fs.existsSync(filePath)) {
+            throw new Error('JSON file not found');
+        }
+
+        const resumeData = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+
+        // Validate the JSON data
+        if (!resumeData.personal || !resumeData.contact || !resumeData.education || !resumeData.skills || !resumeData.experience || !resumeData.projects || !resumeData.certificates || !resumeData.achievements || !resumeData.icons) {
+            throw new Error('Missing required resume data');
+        }
+
         const epochTime = Date.now();
-        const fileName = `resume_${epochTime}.pdf`;
-        const filePath = path.join(PDF_OUTPUT_DIR, fileName);
+        const pdfFileName = `resume_${epochTime}.pdf`;
+        const pdfFilePath = path.join(PDF_OUTPUT_DIR, pdfFileName);
 
         if (!fs.existsSync(PDF_OUTPUT_DIR)) {
             fs.mkdirSync(PDF_OUTPUT_DIR, { recursive: true });
         }
 
         // Generate resume with the provided data
-        await generateResume(req.body);
+        await generateResume(resumeData);
 
         // Wait a brief moment to ensure file writing is complete
         await new Promise(resolve => setTimeout(resolve, 100));
@@ -54,15 +67,15 @@ app.post('/generate-resume', async (req: Request, res: Response) => {
         }
 
         // Rename the generated file
-        fs.renameSync('Resume.pdf', filePath);
+        fs.renameSync('Resume.pdf', pdfFilePath);
 
         // Verify the renamed file exists
-        if (!fs.existsSync(filePath)) {
+        if (!fs.existsSync(pdfFilePath)) {
             throw new Error('Failed to move generated PDF to target location');
         }
 
         // Read file as a Buffer directly
-        const fileBuffer = fs.readFileSync(filePath);
+        const fileBuffer = fs.readFileSync(pdfFilePath);
         
         // Verify file size
         if (fileBuffer.length === 0) {
@@ -74,11 +87,11 @@ app.post('/generate-resume', async (req: Request, res: Response) => {
         // Send email using the Buffer directly without base64 conversion
         const response = await resend.emails.send({
             from: 'onboarding@resend.dev',
-            to: 'gayathri3332003@gmail.com',
+            to: 'gayathri3332003@gmail.com', // Use your own email address for testing
             subject: 'Your Generated Resume',
             html: emailHtml,
             attachments: [{
-                filename: fileName,
+                filename: pdfFileName,
                 content: fileBuffer.toString('base64'),  // Convert Buffer to base64
                 contentType: 'application/pdf'
             }]
@@ -88,32 +101,11 @@ app.post('/generate-resume', async (req: Request, res: Response) => {
             throw new Error(`Email sending failed: ${response.error.message}`);
         }
 
-        // Verify the generated PDF can be opened locally
-        try {
-            // Try to read the file again to verify it's not corrupted
-            fs.readFileSync(filePath);
-            console.log('PDF verification successful');
-        } catch (error) {
-            console.error('PDF verification failed:', error);
-            throw new Error('Generated PDF appears to be corrupted');
-        }
-
-        res.json({
-            message: 'Resume generated and email sent successfully',
-            fileName: fileName,
-            timestamp: epochTime
-        });
+        console.log('Resume generated and email sent successfully');
 
     } catch (error) {
         console.error('Error:', error);
-        res.status(500).json({ 
-            error: 'Operation failed',
-            details: error instanceof Error ? error.message : 'Unknown error'
-        });
+    } finally {
+        rl.close();
     }
-});
-
-// Start Server
-app.listen(port, () => {
-    console.log(`Resume generator API running at http://localhost:${port}`);
 });
