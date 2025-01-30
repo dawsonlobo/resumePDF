@@ -1,6 +1,98 @@
-// this is resumedata.js
-const resumeData = {
-    // Document Settings
+// this is resumeData.ts
+interface DocumentSettings {
+    margin: number;
+    sideBoxSettings: {
+        x: number;
+        y: number;
+        width: number;
+        height: number;
+        color: string;
+    };
+}
+
+interface Styling {
+    primaryFont: string;
+    secondaryFont: string;
+    sectionHeadingFontSize: number;
+    normalFontSize: number;
+}
+
+interface ProfileImage {
+    path: string;
+    x: number;
+    y: number;
+    horizontalRadius: number;
+    verticalRadius: number;
+    borderThickness: number;
+    width: number;
+    height: number;
+}
+
+interface Personal {
+    name: string;
+    profile: string;
+}
+
+interface Contact {
+    address: {
+        line1: string;
+        line2: string;
+    };
+    phone: string;
+    email: string;
+    linkedin: string;
+    github: string;
+}
+
+interface Education {
+    degree: string;
+    institution: string;
+    period: string;
+    score: string;
+}
+
+interface Skills {
+    languages: string[];
+    technical: string[];
+}
+
+interface Experience {
+    title: string;
+    duration: string;
+    location: string;
+    supervisor: string;
+    responsibilities: string[];
+}
+
+interface Project {
+    name: string;
+    description: string;
+}
+
+interface Icons {
+    location: string;
+    phone: string;
+    email: string;
+    linkedin: string;
+    github: string;
+}
+
+interface ResumeData {
+    documentSettings: DocumentSettings;
+    styling: Styling;
+    profileImage: ProfileImage;
+    personal: Personal;
+    contact: Contact;
+    education: Education[];
+    skills: Skills;
+    experience: Experience;
+    projects: Project[];
+    certificates: string[];
+    achievements: string[];
+    icons: Icons;
+}
+
+const resumeData: ResumeData = {
     documentSettings: {
         margin: 50,
         sideBoxSettings: {
@@ -11,16 +103,12 @@ const resumeData = {
             color: '#E1E1E1'
         }
     },
-
-    // Fonts and Colors
     styling: {
         primaryFont: 'Helvetica-Bold',
         secondaryFont: 'Helvetica',
         sectionHeadingFontSize: 16,
         normalFontSize: 11.5
     },
-
-    // Profile Image Settings
     profileImage: {
         path: 'C:\\Users\\HP\\OneDrive\\Desktop\\Interview essential\\Gayathri_photo.jpeg',
         x: 70,
@@ -31,14 +119,10 @@ const resumeData = {
         width: 110,
         height: 132.5
     },
-
-    // Personal Information
     personal: {
         name: 'Gayathri',
         profile: 'As a final-year engineering student, I am passionate about applying my problem-solving skills to develop innovative solutions that benefit society. My academic journey has provided me with a solid foundation in engineering principles, along with practical experience in various technologies.'
     },
-
-    // Contact Information
     contact: {
         address: {
             line1: 'Sri Geetha Priya Nilaya',
@@ -49,8 +133,6 @@ const resumeData = {
         linkedin: 'www.linkedin.com/in/gayathri3213',
         github: 'github.com/Gayathri3'
     },
-
-    // Education Details
     education: [
         {
             degree: 'Bachelor of Engineering',
@@ -71,8 +153,6 @@ const resumeData = {
             score: 'Percentage: 92.33'
         }
     ],
-
-    // Skills
     skills: {
         languages: ['C/C++', 'HTML/CSS/JavaScript', 'Python'],
         technical: [
@@ -84,8 +164,6 @@ const resumeData = {
             'Cyber Security'
         ]
     },
-
-    // Experience
     experience: {
         title: 'Project: Cyber Security Tools for Ethical Hacking',
         duration: 'Duration: February 03, 2023 - March 15, 2023',
@@ -96,8 +174,6 @@ const resumeData = {
             'Worked on securing systems and identifying vulnerabilities under expert supervision.'
         ]
     },
-
-    // Technical Projects
     projects: [
         {
             name: 'Social Media Project (Sociofly) using DBMS',
@@ -112,20 +188,14 @@ const resumeData = {
             description: 'Created a responsive e-commerce app for browsing, purchasing, and profile management using Android Studio, Java, XML, and Firebase.'
         }
     ],
-
-    // Certificates
     certificates: [
         'Successfully completed the Data Science course at Adverk.',
         'Successfully completed Foundations of Cybersecurity course.',
         'Successfully completed AWS Cloud Practitioner Essentials.'
     ],
-
-    // Achievements
     achievements: [
         'Received the patent for IOT project "Smart Speed Breaker"'
     ],
-
-    // Icons Paths
     icons: {
         location: 'D:/Exelon/resumePDF/emojis/loc.png',
         phone: 'D:/Exelon/resumePDF/emojis/phone-call.png',
@@ -135,4 +205,4 @@ const resumeData = {
     }
 };
 
-module.exports = resumeData;
+export default resumeData;
