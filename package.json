@@ -15,6 +15,7 @@
     "@types/express": "^4.17.13",
     "@types/mjml": "^4.7.4",
     "@types/node": "^16.11.7",
+    "@types/node-fetch": "^2.6.12",
     "@types/pdfkit": "^0.13.6",
     "@types/react": "^17.0.34",
     "dotenv": "^10.0.0",
@@ -27,7 +28,8 @@
     "body-parser": "^1.19.1",
     "express": "^4.17.1",
     "mjml": "^4.9.3",
-    "resend": "^0.1.2"
+    "node-fetch": "^2.7.0",
+    "resend": "^4.1.1"
   },
   "pkg": {
     "scripts": "dist/index.js",
@@ -43,7 +45,15 @@
       "node_modules/brotli/**/*",
       "node_modules/ansi-regex/**/*",
       "node_modules/ansi-styles/**/*",
-      "src/resend"
+      "node_modules/es-get-iterator/**/*",
+      "node_modules/@babel/runtime/**/*",
+      "node_modules/lodash/**/*",
+      "resumeTemplate.mjml",
+      ".env",
+      "dist/**/*",
+      "dist/config.js",
+      "resume.json",
+      "node_modules/pdfkit/js/data/*.afm"
     ]
   }
 }

@@ -7,6 +7,17 @@ import { Resend } from 'resend';
 import mjml2html from 'mjml';
 import generateResume from './resumeGenerator';
 import readline from 'readline';
+import { CONFIG } from './config';
+
+import fetch, { Headers } from 'node-fetch';
+
+// Explicitly define the types for globalThis
+(globalThis as any).fetch = fetch;
+(globalThis as any).Headers = Headers;
+
+
+
+
 
 dotenv.config();
 
